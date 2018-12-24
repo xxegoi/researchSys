@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ResearchDao">
+    <resultMap id="research" type="research">
+        <id column="research_id" property="researchId"/>
+        <result column="research_title" property="researchTitle"/>
+        <result column="research_startDate" property="researchStart"/>
+        <result column="research_endDate" property="researchEnd"/>
+        <result column="research_guest" property="researchGuest"/>
+        <collection property="questionList" column="research_id"
+                    select="com.example.demo.dao.QuestionDao.getQuestionListByResearchId"/>
+    </resultMap>
+
+    <sql id="allcols">
+        research_id,research_title,research_startDate,research_endDate,research_guest
+    </sql>
+    <insert id="insert" parameterType="research">
+        insert into research(research_title,research_startDate,research_endDate,research_guest)
+        value (#{researchTitle},#{researchStart},#{researchEnd},#{researchGuest})
+    </insert>
+    <update id="update" parameterType="research">
+        update research
+        set research_title=#{researchTitle},research_startDate=#{researchStart},research_endDate=#{researchEnd},
+        research_guest=#{researchGuest} where research_id=#{researchId}
+    </update>
+
+    <delete id="delete">
+      delete from research where research_id=#{Id}
+    </delete>
+
+    <select id="GetResearchById" resultMap="research">
+      select <include refid="allcols"/> from research where research_id= #{Id}
+    </select>
+
+    <select id="GetResearchList" resultMap="research" parameterType="org.apache.ibatis.session.RowBounds">
+        select <include refid="allcols"/> from research
+    </select>
+
+
+</mapper>

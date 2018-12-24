@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ResultDao">
+
+    <resultMap id="result" type="result">
+        <id column="result_id" property="resultId"/>
+        <result column="result_user" property="resultUser"/>
+        <result property="resultTime" column="result_time"/>
+        <association column="result_questionId" property="resultQuestion" select="com.example.demo.dao.QuestionDao.getQuestionById"/>
+        <association property="resultAnswer" column="result_answer" select="com.example.demo.dao.AnswerDao.getAnswerById"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="result">
+      insert into result(result_user,result_time,result_question,result_answer)
+      value(#{resultUser},#{resultTime},#{resultQuestion.questionId},#{resultAnswer.answerId})
+    </insert>
+    <update id="update" parameterType="result">
+      update result set result_answer=#{resultAnswer.answerId},result_time=#{resultTime} where result_questionId=#{resultQuestion.questionId} and result_user=#{resultUser}
+    </update>
+    <delete id="delete">
+        delete from result where result_id=#{Id}
+    </delete>
+    <select id="GetResult" resultType="result">
+        select result_id,result_user,result_time,result_questionId,result_answer from result
+        where result_user=#{user} and result_questionId=#{questionId}
+    </select>
+</mapper>

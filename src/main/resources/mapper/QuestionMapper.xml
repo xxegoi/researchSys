@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.QuestionDao">
+    <resultMap id="question" type="question">
+        <id column="que_ID" property="questionId"/>
+        <result column="que_describe" property="questionDescribe"/>
+        <result column="que_researchId" property="questionResearchId"/>
+        <result column="que_type" property="questionType" typeHandler="com.example.demo.typeHandler.QuestionTypeHandler"/>
+        <association property="answerList" select="com.example.demo.dao.AnswerDao.getList" column="que_ID"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="question">
+      insert into question(que_type,que_describe,que_researchId)
+      value(#{questionType},#{questionDescribe},#{questionResearchId})
+    </insert>
+
+    <update id="update" parameterType="question">
+        update question set que_type=#{questionType},que_describe=#{questionDescribe} where que_ID=#{questionId}
+    </update>
+    <delete id="delete">
+        delete from question where que_ID=#{questionId}
+    </delete>
+    <select id="getQuestionById" resultMap="question">
+      select * from question where que_ID=#{Id}
+    </select>
+    <select id="getQuestionListByResearchId" resultMap="question">
+        select * from question where que_researchId=#{resId}
+        
+    </select>
+</mapper>

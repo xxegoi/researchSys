@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.AnswerDao">
+    <resultMap id="answer" type="answer">
+        <id property="answerId" column="ans_Id"/>
+        <result property="ansIndex" column="ans_index"/>
+        <result property="ansQuestionId" column="ans_questionId"/>
+        <result property="answerTitle" column="ans_title"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="answer">
+      insert into answer(ans_title,ans_questionId,ans_index) value(#{answerTitle},#{ansQuestionId},#{ansIndex})
+    </insert>
+
+    <update id="update" parameterType="answer">
+        update answer set ans_title=#{answerTitle},ans_index=#{ansIndex} where ans_Id=#{answerId}
+    </update>
+
+    <delete id="delete">
+        delete from answer where ans_Id=#{id}
+    </delete>
+
+    <select id="getAnswerById" parameterType="int" resultMap="answer">
+        select * from answer where ans_id=#{id}
+    </select>
+
+    <select id="getList" parameterType="int" resultMap="answer">
+        select * from answer where ans_questionId=#{questionId}
+    </select>
+
+
+</mapper>
