@@ -1,6 +1,6 @@
 package com.example.demo.pojo;
 
-public class Answer {
+public class Answer extends basePOJO {
     //答案id
     private int answerId;
     //答案内容

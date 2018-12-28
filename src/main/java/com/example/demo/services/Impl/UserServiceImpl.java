@@ -4,7 +4,6 @@ import com.example.demo.common.Page;
 import com.example.demo.dao.UserDao;
 import com.example.demo.pojo.User;
 import com.example.demo.services.UserService;
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSessionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getList(Page page) {
-        //Mybatis分页类
-        RowBounds rowBounds=null;
 
         if(page==null){
-            rowBounds=new RowBounds(0,20);
-        }else {
-            rowBounds=new RowBounds((page.getPage()-1)*page.getSize(),page.getSize());
+            page=new Page(1,20);
         }
 
-        return userDao.getAll(rowBounds);
+        return userDao.getAll(page.getRowBounds());
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.example.demo.common.FailResult;
 import com.example.demo.common.ReturnResult;
 import com.example.demo.common.SucessResult;
 import com.example.demo.pojo.Question;
+import com.example.demo.services.Impl.QuestionServiceImpl;
 import com.example.demo.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/question")
 public class questionController {
+
     @Autowired
-    QuestionService questionService=null;
+    QuestionServiceImpl questionService=null;
     @Autowired
     SucessResult sucessResult=null;
     @Autowired

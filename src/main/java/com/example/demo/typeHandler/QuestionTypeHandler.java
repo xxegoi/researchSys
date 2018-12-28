@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class QuestionTypeHandler implements TypeHandler<QuestionType> {
+
     @Override
     public void setParameter(PreparedStatement ps, int i, QuestionType parameter, JdbcType jdbcType) throws SQLException {
         ps.setInt(i,parameter.getIndex());

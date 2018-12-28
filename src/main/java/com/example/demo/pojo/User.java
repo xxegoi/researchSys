@@ -4,7 +4,7 @@ package com.example.demo.pojo;
 import org.apache.ibatis.type.Alias;
 
 @Alias("user")
-public class User {
+public class User extends basePOJO{
     private int userId;
     private String userName;
     private String userPassword;

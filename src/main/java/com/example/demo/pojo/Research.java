@@ -1,9 +1,11 @@
 package com.example.demo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
-public class Research {
+public class Research extends basePOJO{
     //调查ID
     private int researchId;
     //调查主题
@@ -13,17 +15,8 @@ public class Research {
     //调查结束时间
     private Date researchEnd;
     //问题列表
-    private List<Question> questionList;
     //是否匿名
     private Boolean researchGuest;
-
-    public List<Question> getQuestionList() {
-        return questionList;
-    }
-
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
-    }
 
     public int getResearchId() {
         return researchId;
@@ -41,6 +34,7 @@ public class Research {
         this.researchTitle = researchTitle;
     }
 
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     public Date getResearchStart() {
         return researchStart;
     }
@@ -49,6 +43,7 @@ public class Research {
         this.researchStart = researchStart;
     }
 
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     public Date getResearchEnd() {
         return researchEnd;
     }

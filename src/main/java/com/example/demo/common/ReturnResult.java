@@ -1,6 +1,8 @@
 package com.example.demo.common;
 
 
+import java.util.List;
+
 public abstract class ReturnResult {
     private String status;
     private String message;
@@ -20,6 +22,14 @@ public abstract class ReturnResult {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setMessage(List<String> messages){
+        String str="";
+        for (String message :messages){
+            str+=message+"; ";
+        }
+        this.message=str;
     }
 
     public Object getData() {

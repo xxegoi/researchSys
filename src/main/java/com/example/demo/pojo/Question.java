@@ -1,8 +1,8 @@
 package com.example.demo.pojo;
 
-import java.util.List;
+import java.util.*;
 
-public class Question {
+public class Question extends basePOJO{
     //问题Id
     private int questionId;
     //问题类型
@@ -45,4 +45,22 @@ public class Question {
     public void setQuestionResearchId(int questionResearchId) {
         this.questionResearchId = questionResearchId;
     }
+
+    public List<Answer> getAnswerList() {
+
+        if(this.answerList==null){
+            return new ArrayList<>();
+        }
+
+        return answerList;
+
+    }
+
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
+
+
+
+
 }

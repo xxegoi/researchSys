@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.pojo.Answer;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,9 @@ public interface AnswerDao {
 
     int delete(int id);
 
+    int deleteByQuestionId(@Param("questionId") int questionId);
+
     int update(Answer answer);
+
+    int insertList(@Param("answers") List<Answer> answers);
 }

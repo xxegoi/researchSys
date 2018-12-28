@@ -2,12 +2,13 @@ package com.example.demo.pojo;
 
 import java.util.Date;
 
-public class Result {
+public class Result extends basePOJO{
     private int resultId;
     private String resultUser;
-    private Answer resultAnswer;
+    private String resultAnswer;
     private Date resultTime;
     private Question resultQuestion;
+    private Research resultResearch;
 
     public int getResultId() {
         return resultId;
@@ -25,14 +26,6 @@ public class Result {
         this.resultUser = resultUser;
     }
 
-    public Answer getResultAnswer() {
-        return resultAnswer;
-    }
-
-    public void setResultAnswer(Answer resultAnswer) {
-        this.resultAnswer = resultAnswer;
-    }
-
     public Date getResultTime() {
         return resultTime;
     }
@@ -47,5 +40,21 @@ public class Result {
 
     public void setResultQuestion(Question resultQuestion) {
         this.resultQuestion = resultQuestion;
+    }
+
+    public Research getResultResearch() {
+        return resultResearch;
+    }
+
+    public void setResultResearch(Research resultResearch) {
+        this.resultResearch = resultResearch;
+    }
+
+    public String getResultAnswer() {
+        return resultAnswer;
+    }
+
+    public void setResultAnswer(String resultAnswer) {
+        this.resultAnswer = resultAnswer;
     }
 }

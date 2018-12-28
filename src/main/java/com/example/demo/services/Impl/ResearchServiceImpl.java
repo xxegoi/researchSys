@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ResearchService implements com.example.demo.services.ResearchService {
+public class ResearchServiceImpl implements com.example.demo.services.ResearchService {
 
     @Autowired
     QuestionService questionService=null;
@@ -78,6 +78,18 @@ public class ResearchService implements com.example.demo.services.ResearchServic
     @Override
     public int delete(int Id) {
         return this.researchDao.delete(Id);
+    }
+
+    @Override
+    public List<Research> getList(Page page) {
+
+        if(page==null){
+            page=new Page(1,20);
+        }
+
+        List<Research> researchList=this.researchDao.GetResearchList(page.getRowBounds());
+
+        return researchList;
     }
 
 }

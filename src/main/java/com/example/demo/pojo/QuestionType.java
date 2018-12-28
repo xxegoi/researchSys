@@ -36,4 +36,13 @@ public enum QuestionType {
         }
         return null;
     }
+
+    public static QuestionType GetTypeByName(String str){
+        for(QuestionType type:QuestionType.values()){
+            if(type.getTitle().equals(str)){
+                return type;
+            }
+        }
+        return null;
+    }
 }
