@@ -1,5 +1,6 @@
 package com.example.demo.services.Impl;
 
+<<<<<<< HEAD:src/main/java/com/example/demo/services/Impl/AnswerServiceImpl.java
 import com.example.demo.dao.AnswerDao;
 import com.example.demo.pojo.Answer;
 import com.example.demo.services.AnswerService;
@@ -51,4 +52,7 @@ public class AnswerServiceImpl implements AnswerService {
         return answerDao.insertList(answers);
     }
 
+=======
+public class ResearchService {
+>>>>>>> parent of c074f7b... Test OK:src/main/java/com/example/demo/services/Impl/ResearchService.java
 }
