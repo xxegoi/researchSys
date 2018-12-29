@@ -9,13 +9,12 @@ import javax.validation.constraints.Pattern;
 
 public class LoginUser {
 
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "用户名不能为空")
     @Pattern(regexp = "[\\w\\d]+",message = "用户名只能包含字母和数字")
     private String userName;
 
-    @NotNull
-    @Length(min = 6,max = 12)
+    @NotNull(message = "密码不能为空")
+    @Length(min = 6,max = 12,message = "密码长度在6到12位")
     private String passWord;
 
     public String getUserName() {

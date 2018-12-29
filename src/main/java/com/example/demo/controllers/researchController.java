@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.common.FailResult;
-import com.example.demo.common.Page;
 import com.example.demo.common.ReturnResult;
 import com.example.demo.common.SucessResult;
 import com.example.demo.pojo.Research;
@@ -31,7 +30,7 @@ public class researchController {
         Boolean flag=false;
 
         try {
-            if(model.getTitle()==null){
+            if(model.getTitle()==null||model.getTitle().length()==0){
                 List<Research> researchList=researchService.getList(model.getPageModel());
                 flag=true;
                 sucessResult.setData(researchList);
@@ -48,6 +47,55 @@ public class researchController {
             return flag?sucessResult:failResult;
         }
 
+    }
+
+    @RequestMapping("/addResearch")
+    public ReturnResult add(@RequestBody Research research){
+        Boolean flag=false;
+
+        try{
+            int i= researchService.insert(research);
+            flag=true;
+            sucessResult.setData(i);
+        }catch(Exception e){
+            failResult.setMessage(e.getMessage());
+        }
+        finally {
+            return flag?sucessResult:failResult;
+        }
+    }
+
+    @RequestMapping("/updateResearch")
+    public ReturnResult update(@RequestBody Research research){
+        Boolean flag=false;
+
+        try{
+            int i= researchService.update(research);
+            flag=true;
+            sucessResult.setData(i);
+        }
+        catch (Exception e){
+            failResult.setMessage(e.getMessage());
+        }
+
+        return flag?sucessResult:failResult;
+    }
+
+    @RequestMapping("/deleteResearch")
+    public ReturnResult delete(int researchId){
+
+        Boolean flag=false;
+
+        try {
+            int i=researchService.delete(researchId);
+            sucessResult.setData(i);
+            flag=true;
+        }
+        catch (Exception e){
+            failResult.setMessage(e.getMessage());
+        }
+
+        return flag?sucessResult:failResult;
     }
 
 }

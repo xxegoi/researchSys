@@ -5,6 +5,8 @@ spring:
     username: devuser
     password: 1234
 
+
+
 mybatis:
   type-aliases-package: com.example.demo.pojo
   mapper-locations: classpath:mapper/*.xml
@@ -12,5 +14,8 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     lazy-loading-enabled: true
     aggressive-lazy-loading: false
+
+
+
 
 

@@ -3,9 +3,9 @@ package com.example.demo.controllers;
 import com.example.demo.common.FailResult;
 import com.example.demo.common.ReturnResult;
 import com.example.demo.common.SucessResult;
+import com.example.demo.common.ValidatorUnit;
 import com.example.demo.pojo.Question;
 import com.example.demo.services.Impl.QuestionServiceImpl;
-import com.example.demo.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +65,13 @@ public class questionController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ReturnResult insert(@RequestBody Question question){
+
+        List<String> messages= ValidatorUnit.validate(question);
+        if(messages!=null){
+            failResult.setMessage(messages);
+            return failResult;
+        }
+
         Boolean flag=false;
         try{
             int i = questionService.insert(question);
@@ -123,5 +130,19 @@ public class questionController {
             }
             return flag?sucessResult:failResult;
         }
+    }
+
+    @RequestMapping("/addQuestions")
+    public ReturnResult insertQuestionList(@RequestBody List<Question> questions){
+        Boolean flag=false;
+
+        try {
+
+        }
+        catch (Exception e){
+            failResult.setMessage(e.getMessage());
+        }
+
+        return flag?sucessResult:failResult;
     }
 }

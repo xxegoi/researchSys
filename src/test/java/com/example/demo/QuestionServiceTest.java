@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.pojo.Answer;
 import com.example.demo.pojo.Question;
 import com.example.demo.pojo.QuestionType;
+import com.example.demo.services.Impl.QuestionServiceImpl;
 import com.example.demo.services.QuestionService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
 public class QuestionServiceTest extends DemoApplicationTests {
 
     @Autowired
-    QuestionService questionService;
+    QuestionServiceImpl questionService;
 
     @Test
     public void testInsertList(){

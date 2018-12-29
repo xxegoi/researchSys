@@ -1,14 +1,32 @@
 package com.example.demo.pojo;
-
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class Result extends basePOJO{
+
     private int resultId;
     private String resultUser;
+    @NotEmpty(message = "答案不能为空")
     private String resultAnswer;
     private Date resultTime;
-    private Question resultQuestion;
-    private Research resultResearch;
+    private int resultQuestion;
+    private int resultResearch;
+
+    public int getResultQuestion() {
+        return resultQuestion;
+    }
+
+    public void setResultQuestion(int resultQuestion) {
+        this.resultQuestion = resultQuestion;
+    }
+
+    public int getResultResearch() {
+        return resultResearch;
+    }
+
+    public void setResultResearch(int resultResearch) {
+        this.resultResearch = resultResearch;
+    }
 
     public int getResultId() {
         return resultId;
@@ -32,22 +50,6 @@ public class Result extends basePOJO{
 
     public void setResultTime(Date resultTime) {
         this.resultTime = resultTime;
-    }
-
-    public Question getResultQuestion() {
-        return resultQuestion;
-    }
-
-    public void setResultQuestion(Question resultQuestion) {
-        this.resultQuestion = resultQuestion;
-    }
-
-    public Research getResultResearch() {
-        return resultResearch;
-    }
-
-    public void setResultResearch(Research resultResearch) {
-        this.resultResearch = resultResearch;
     }
 
     public String getResultAnswer() {

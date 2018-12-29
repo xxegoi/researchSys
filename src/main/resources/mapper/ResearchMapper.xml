@@ -12,7 +12,7 @@
     <sql id="allcols">
         research_id,research_title,research_startDate,research_endDate,research_guest
     </sql>
-    <insert id="insert" parameterType="research">
+    <insert id="insert" parameterType="research" useGeneratedKeys="true" keyProperty="researchId">
         insert into research(research_title,research_startDate,research_endDate,research_guest)
         value (#{researchTitle},#{researchStart},#{researchEnd},#{researchGuest})
     </insert>

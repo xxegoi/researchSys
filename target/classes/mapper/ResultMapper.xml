@@ -7,8 +7,8 @@
         <result column="result_user" property="resultUser"/>
         <result property="resultTime" column="result_time"/>
         <result property="resultAnswer" column="result_answer"/>
-        <association column="result_questionId" property="resultQuestion" select="com.example.demo.dao.QuestionDao.getQuestionById"/>
-        <association property="resultResearch" column="result_researchId" select="com.example.demo.dao.ResearchDao.GetResearchById"/>
+        <result property="resultQuestion" column="result_question"/>
+        <result property="resultResearch" column="result_research"/>
     </resultMap>
 
     <sql id="allcols">
@@ -17,14 +17,14 @@
 
     <insert id="insert" parameterType="result">
       insert into result(result_user,result_time,result_question,result_answer,result_researchId)
-      value(#{resultUser},#{resultTime},#{resultQuestion.questionId},#{resultAnswer},#{resultResearch.researchId})
+      value(#{resultUser},#{resultTime},#{resultQuestion},#{resultAnswer},#{resultResearch})
     </insert>
 
     <update id="update" parameterType="result">
       update result set result_answer=#{resultAnswer},result_time=#{resultTime}
-      where result_questionId=#{resultQuestion.questionId}
+      where result_questionId=#{resultQuestion}
       and result_user=#{resultUser}
-      and result_researchId=#{resultResearch.researchId}
+      and result_researchId=#{resultResearch}
     </update>
 
     <delete id="delete">

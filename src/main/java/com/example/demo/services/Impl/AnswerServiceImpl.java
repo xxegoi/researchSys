@@ -46,7 +46,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED)
     public int insertList(List<Answer> answers) {
         return answerDao.insertList(answers);
     }

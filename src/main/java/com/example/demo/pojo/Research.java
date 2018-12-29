@@ -2,21 +2,32 @@ package com.example.demo.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 public class Research extends basePOJO{
     //调查ID
     private int researchId;
     //调查主题
+    @NotNull
+    @NotEmpty(message = "调查标题不能为空")
     private String researchTitle;
     //调查开始时间
+    @NotNull
+    @NotEmpty(message = "开始时间不能为空")
     private Date researchStart;
     //调查结束时间
+    @NotNull
+    @NotEmpty(message = "结束时间不能为空")
     private Date researchEnd;
     //问题列表
     //是否匿名
     private Boolean researchGuest;
+
+    public Research(){
+        this.researchGuest=false;
+    }
 
     public int getResearchId() {
         return researchId;

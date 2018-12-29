@@ -2,6 +2,7 @@ package com.example.demo.services.Impl;
 
 import com.example.demo.common.Page;
 import com.example.demo.dao.ResearchDao;
+import com.example.demo.pojo.Question;
 import com.example.demo.pojo.Research;
 import com.example.demo.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ResearchServiceImpl implements com.example.demo.services.ResearchService {
 
     @Autowired
-    QuestionService questionService=null;
+    QuestionServiceImpl questionService=null;
 
     @Autowired
     ResearchDao researchDao=null;
@@ -58,7 +59,9 @@ public class ResearchServiceImpl implements com.example.demo.services.ResearchSe
             throw new Exception("调查结束时间不能早于开始时间");
         }
 
-        return this.researchDao.insert(research);
+        this.researchDao.insert(research);
+
+        return research.getResearchId();
     }
 
     @Override
@@ -66,6 +69,10 @@ public class ResearchServiceImpl implements com.example.demo.services.ResearchSe
 
         if(research.getResearchTitle()==null||research.getResearchTitle().length()==0){
             throw new Exception("标题不能为空");
+        }
+
+        if(research.getResearchStart()==null||research.getResearchEnd()==null){
+            throw new Exception("调查开始和结束时间不能为空");
         }
 
         if(research.getResearchStart().getTime()>research.getResearchEnd().getTime()){
@@ -77,7 +84,13 @@ public class ResearchServiceImpl implements com.example.demo.services.ResearchSe
 
     @Override
     public int delete(int Id) {
-        return this.researchDao.delete(Id);
+
+        //删除调查
+        int i=researchDao.delete(Id);
+        //删除调查问题
+        i+=questionService.deleteByResearchId(Id);
+
+        return i;
     }
 
     @Override

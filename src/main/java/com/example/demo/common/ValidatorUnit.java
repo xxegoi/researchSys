@@ -23,7 +23,7 @@ public class ValidatorUnit {
         List<String> messages=new ArrayList<>();
 
          for (ConstraintViolation constraintViolation:constraintViolations){
-             messages.add(String.format("%s:%s",constraintViolation.getPropertyPath(),
+             messages.add(String.format("%s",
                      constraintViolation.getMessage()));
          }
 
